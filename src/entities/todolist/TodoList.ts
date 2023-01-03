@@ -7,9 +7,13 @@ export default class TodoList {
         this.items = items ?? [];
     }
 
+    public addItem(item: Item): void {
+        this.items.push(item);
+    }
+
     public add(description: string): void {
         const item = new Item(undefined, description);
-        this.items.push(item);
+        this.addItem(item);
     }
 
     public delete(id: number): void {
@@ -17,21 +21,21 @@ export default class TodoList {
     }
 
     public update(updatedItem: Item): void {
-        const index = this.items.findIndex(item => item.id === updatedItem.id);
+        const index = this.findIndex(updatedItem.id);
 
         if (index !== -1) {
             this.items[index] = updatedItem;
         }
     }
 
-    public get(id: string): Item | undefined {
-        const index = this.items.findIndex(item => item.id === id);
+    public get(id: string): Item {
+        const index = this.findIndex(id);
 
         if (index !== -1) {
             return this.items[index];
         }
 
-        return undefined;
+        return Item.create();
     }
     
     public count(): number {
@@ -40,5 +44,10 @@ export default class TodoList {
 
     public getByIndex(index: number): Item {
         return this.items[index];
+    }
+
+    public findIndex(id: string): number {
+        const index = this.items.findIndex(item => item.id === id);
+        return index;
     }
 }
