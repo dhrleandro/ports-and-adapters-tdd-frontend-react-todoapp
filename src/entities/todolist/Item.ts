@@ -2,9 +2,9 @@ import UniqueIdentifier from "../../utils/UniqueIdentifier";
 
 export default class Item {
 
-    public readonly id: string;
-    public readonly description: string;
-    public readonly done: boolean;
+    public id: string;
+    public description: string;
+    public done: boolean;
 
     constructor (id: string | undefined, description: string, done: boolean = false) {
         this.id = id ? id : UniqueIdentifier.generate();

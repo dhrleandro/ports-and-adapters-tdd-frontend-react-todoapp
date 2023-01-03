@@ -26,7 +26,7 @@ export default class TodoList {
         const index = this.findIndex(updatedItem.id);
 
         if (index !== -1) {
-            this.items[index] = updatedItem;
+            this.items[index] = Item.create(updatedItem.id, updatedItem.description, updatedItem.done);
         }
     }
 
@@ -35,9 +35,9 @@ export default class TodoList {
 
         if (index !== -1) {
             return this.items[index];
+        } else {
+            throw new Error(`the item with id ${id} not exists`);
         }
-
-        return Item.create();
     }
     
     public count(): number {
@@ -48,7 +48,7 @@ export default class TodoList {
         const item = this.items[index];
 
         if (item) {
-            return item;
+            return Item.create(item.id, item.description, item.done);
         } else {
             throw new Error(`the index ${index} not exists`);
         }
