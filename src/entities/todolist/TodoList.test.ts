@@ -43,3 +43,27 @@ test('update a item in TodoList', () => {
 
   expect(todoList.get(newItem.id).description).toEqual('bbbbv2');
 });
+
+test('delete item from TodoList', () => {
+  const todoList = new TodoList();
+  const items = [];
+
+  todoList.add('aaaa');
+  todoList.add('bbbb');
+  const deleteId = todoList.add('cccc').id;
+  todoList.add('dddd');
+  todoList.add('eeee');
+
+  expect(todoList.getByIndex(0).description).toBe('aaaa');
+  expect(todoList.getByIndex(1).description).toBe('bbbb');
+  expect(todoList.getByIndex(2).description).toBe('cccc');
+  expect(todoList.getByIndex(3).description).toBe('dddd');
+  expect(todoList.getByIndex(4).description).toBe('eeee');
+
+  todoList.delete(deleteId);
+
+  expect(todoList.getByIndex(0).description).toBe('aaaa');
+  expect(todoList.getByIndex(1).description).toBe('bbbb');
+  expect(todoList.getByIndex(2).description).toBe('dddd');
+  expect(todoList.getByIndex(3).description).toBe('eeee');
+});

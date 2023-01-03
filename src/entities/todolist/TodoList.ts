@@ -11,13 +11,15 @@ export default class TodoList {
         this.items.push(item);
     }
 
-    public add(description: string): void {
+    public add(description: string): Item {
         const item = new Item(undefined, description);
         this.addItem(item);
+        return item;
     }
 
-    public delete(id: number): void {
-        // this.items.push(item);
+    public delete(id: string): void {
+        const index = this.findIndex(id);
+        this.items.splice(index, 1);
     }
 
     public update(updatedItem: Item): void {
@@ -43,7 +45,13 @@ export default class TodoList {
     }
 
     public getByIndex(index: number): Item {
-        return this.items[index];
+        const item = this.items[index];
+
+        if (item) {
+            return item;
+        } else {
+            throw new Error(`the index ${index} not exists`);
+        }
     }
 
     public findIndex(id: string): number {
