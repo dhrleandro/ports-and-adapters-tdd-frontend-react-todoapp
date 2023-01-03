@@ -1,4 +1,4 @@
-import UniqueIdentifier from "../../services/UniqueIdentifier";
+import UniqueIdentifier from "../../utils/UniqueIdentifier";
 
 export default class Item {
 

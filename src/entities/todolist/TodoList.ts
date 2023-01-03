@@ -58,4 +58,10 @@ export default class TodoList {
         const index = this.items.findIndex(item => item.id === id);
         return index;
     }
+
+    // return a copy of this.items
+    public getItems(): Item[] {
+        // return this.items; // this return this.items reference, not a copy
+        return this.items.slice(0, this.count()); // return a copy of this.items
+    }
 }

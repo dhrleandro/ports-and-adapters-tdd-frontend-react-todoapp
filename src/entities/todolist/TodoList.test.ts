@@ -67,3 +67,38 @@ test('delete item from TodoList', () => {
   expect(todoList.getByIndex(2).description).toBe('dddd');
   expect(todoList.getByIndex(3).description).toBe('eeee');
 });
+
+test('verify if getItems() return a copy of this.items from TodoList object, not a reference', () => {
+  const todoList = new TodoList();
+  todoList.add('aaaa');
+  todoList.add('bbbb');
+  expect(todoList.count()).toBe(2);
+
+  const items = todoList.getItems();
+  expect(items.length).toBe(2);
+  expect(items[0].description).toEqual('aaaa');
+  expect(items[1].description).toEqual('bbbb');
+
+  items.splice(1, 1);
+  expect(items[0].description).toEqual('aaaa');
+  expect(items[1]).toBeUndefined();
+
+  expect(todoList.getByIndex(0).description).toEqual('aaaa');
+  expect(todoList.getByIndex(1).description).toEqual('bbbb');
+});
+
+test('create TodoList using items from another TodoList and ensure there is no link between them', () => {
+  const todoList = new TodoList();
+  todoList.add('aaaa');
+  todoList.add('bbbb');
+  expect(todoList.count()).toBe(2);
+
+  const todoListB = new TodoList(todoList.getItems());
+  expect(todoListB.count()).toBe(2);
+
+  todoListB.add('cccc');
+  todoListB.add('dddd');
+
+  expect(todoList.count()).toBe(2);
+  expect(todoListB.count()).toBe(4);
+});
