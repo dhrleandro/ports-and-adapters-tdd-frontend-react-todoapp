@@ -1,3 +1,15 @@
+Este projeto me proporcionou estudar alguns conceitos de Clean Arquitecture aplicados ao frontend. Neste caso, basicamente implementei o conceito de Ports and Adapters e separei as entidades. Também estou aproveitando para estudar testes unitários neste projeto.
+
+Ainda está em desenvolvimento. O texto acima é um breve resumo do que foi feito até o momento e não reflete a versão final deste documento.
+
+----
+
+This project allowed me to study some concepts of Clean Architecture applied to the frontend. In this case, I basically implemented the concept of Ports and Adapters and separated the entities. I'm also taking the opportunity to study unit tests in this project.
+
+It's still in development. The text above is a brief summary of what has been done so far and does not reflect the final version of this document.
+
+----
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
