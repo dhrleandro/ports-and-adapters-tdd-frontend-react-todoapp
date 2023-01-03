@@ -1,10 +1,10 @@
-import React from 'react';
 import './App.css';
+import TodoList from './components/TodoList';
 
 function App() {
   return (
     <div className="App">
-      <h1>H1 Title</h1>
+      <TodoList />
     </div>
   );
 }
