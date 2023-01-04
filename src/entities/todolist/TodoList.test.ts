@@ -115,3 +115,34 @@ test('done items and count total pending', () => {
 
   expect(todoList.totalPending()).toEqual(2);
 });
+
+test('total pending is equal 10', () => {
+  const todoList = new TodoList();
+  todoList.add('1');
+  todoList.add('2');
+  todoList.add('3');
+  todoList.add('4');
+  todoList.add('5');
+  todoList.add('6');
+  todoList.add('7');
+  todoList.add('8');
+  todoList.add('9');
+  todoList.add('10');
+
+  expect(() => {
+    todoList.add('11');
+  }).toThrow('it is not possible to add more than 10 pending tasks');
+
+  todoList.done(todoList.getByIndex(1).id);
+  todoList.done(todoList.getByIndex(5).id);
+  todoList.done(todoList.getByIndex(3).id);
+
+
+  todoList.add('11');
+  todoList.add('12');
+  todoList.add('13');
+  
+  expect(() => {
+    todoList.add('14');
+  }).toThrow('it is not possible to add more than 10 pending tasks');
+});

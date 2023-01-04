@@ -8,10 +8,11 @@ export default class TodoList {
     }
 
     public addItem(item: Item): void {
-        if (this.count() >= 10)
+        if (this.totalPending() < 10) {
+            this.items.push(item);
+        } else {
             throw new Error(`it is not possible to add more than 10 pending tasks`);
-
-        this.items.push(item);
+        }
     }
 
     public add(description: string): Item {
