@@ -8,13 +8,16 @@ export default class TodoList {
     }
 
     public addItem(item: Item): void {
+        if (this.count() >= 10)
+            throw new Error(`it is not possible to add more than 10 pending tasks`);
+
         this.items.push(item);
     }
 
     public add(description: string): Item {
         const item = new Item(undefined, description);
         this.addItem(item);
-        return item;
+        return item.copy();
     }
 
     public delete(id: string): void {
@@ -22,11 +25,19 @@ export default class TodoList {
         this.items.splice(index, 1);
     }
 
+    public done(id: string): void {
+        const item = this.get(id);
+        item.done = true;
+        this.update(item);
+    }
+
     public update(updatedItem: Item): void {
         const index = this.findIndex(updatedItem.id);
 
         if (index !== -1) {
             this.items[index] = Item.create(updatedItem.id, updatedItem.description, updatedItem.done);
+        } else {
+            throw new Error(`the item with id ${updatedItem.id} not exists`);
         }
     }
 
@@ -34,7 +45,7 @@ export default class TodoList {
         const index = this.findIndex(id);
 
         if (index !== -1) {
-            return this.items[index];
+            return this.items[index].copy();
         } else {
             throw new Error(`the item with id ${id} not exists`);
         }
@@ -42,6 +53,12 @@ export default class TodoList {
     
     public count(): number {
         return this.items.length;
+    }
+
+    public totalPending(): number {
+        return this.items
+            .filter(task => (task.done === false))
+            .length;
     }
 
     public getByIndex(index: number): Item {

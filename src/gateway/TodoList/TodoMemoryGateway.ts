@@ -4,7 +4,7 @@ import TodoGateway from "./TodoGateway";
 export default class TodoMemoryGateway implements TodoGateway {
 	private todos: TodoList;
 
-	constructor () {
+	constructor() {
 		this.todos = new TodoList([
 			Item.create(undefined, 'Fazer café'),
             Item.create(undefined, 'Estudar programação'),

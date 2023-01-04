@@ -102,3 +102,16 @@ test('create TodoList using items from another TodoList and ensure there is no l
   expect(todoList.count()).toBe(2);
   expect(todoListB.count()).toBe(4);
 });
+
+test('done items and count total pending', () => {
+  const todoList = new TodoList();
+  todoList.add('aaaa');
+  const done1 = todoList.add('bbbb');
+  todoList.add('dddd');
+  const done2 = todoList.add('eeee');
+
+  todoList.done(done1.id);
+  todoList.done(done2.id);
+
+  expect(todoList.totalPending()).toEqual(2);
+});

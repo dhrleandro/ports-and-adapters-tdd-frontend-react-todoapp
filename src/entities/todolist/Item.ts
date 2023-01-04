@@ -12,6 +12,10 @@ export default class Item {
         this.done = done;
     }
 
+    public copy(): Item {
+        return Item.create(this.id, this.description, this.done);
+    }
+
     public static create(id: string | undefined = undefined, description: string = '', done: boolean = false): Item {
         return new Item(id, description, done);
     }
