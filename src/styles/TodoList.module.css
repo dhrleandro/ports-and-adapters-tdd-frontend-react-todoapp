@@ -1,0 +1,42 @@
+.TodoListContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.TodoList {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    gap: 1rem;
+}
+
+.TodoItem {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.TodoItem input, .TodoItem button, .TodoItem label {
+    cursor: pointer;
+    user-select: none;
+}
+
+.TodoItem button {
+    height: 1.4rem;
+}
+.TodoItem label {
+    width: 16rem;
+}
+
+.TodoItem .done {
+    text-decoration: line-through;
+}
