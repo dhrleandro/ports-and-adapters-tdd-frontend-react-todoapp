@@ -1,10 +1,10 @@
-import './App.css';
-import TodoList from './components/TodoList';
+import TodoListContainer from './components/TodoListContainer';
+import styles from './styles/App.module.css';
 
 function App() {
   return (
-    <div className="App">
-      <TodoList />
+    <div className={styles.App}>
+      <TodoListContainer />
     </div>
   );
 }
