@@ -15,6 +15,10 @@ function TodoListContainer() {
     return (
         <div className={styles.TodoListContainer}>
             <h2>Todo App</h2>
+            <div className={styles.InputContainer}>
+                <input type="text" />
+                <button>Add</button>
+            </div>
             <TodoList items={items}/>
         </div>
     );
