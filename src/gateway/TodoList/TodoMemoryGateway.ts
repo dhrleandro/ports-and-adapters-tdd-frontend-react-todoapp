@@ -17,8 +17,9 @@ export default class TodoMemoryGateway implements TodoGateway {
 		return new TodoList(this.todos.getItems());
 	}
 
-	async addItem(item: Item): Promise<void> {
+	async addItem(item: Item): Promise<Item> {
 		this.todos.addItem(item);
+		return item;
 	}
 
 	async updateItem(item: Item): Promise<void> {

@@ -4,6 +4,7 @@ import styles from "../styles/TodoList.module.css";
 
 interface Props {
     item: Item;
+    onToggle?: (id: string, done: boolean) => void
 }
 
 function TodoItem(props: Props) {
@@ -17,7 +18,11 @@ function TodoItem(props: Props) {
                 id={labelId}
                 type="checkbox"
                 checked={done}
-                onChange={event => setDone(event.target.checked)}
+                onChange={event => { 
+                    setDone(event.target.checked);
+                    if (props.onToggle)
+                        props.onToggle(props.item.id, event.target.checked); 
+                }}
             />
             <label
                 htmlFor={labelId}

@@ -3,19 +3,24 @@ import { Item } from "../entities/TodoList";
 import TodoList from "./TodoList";
 import styles from "../styles/TodoList.module.css";
 import { useDispatch, useTrackedState } from "../store/store";
+import useTodoListGateway from "../hooks/useTodoListGateway";
 
 function TodoListContainer() {
 
     const dispatch = useDispatch();
     const state = useTrackedState();
+    const gateway = useTodoListGateway();
     
     React.useEffect(() => {
-        console.log('init todos');
-        dispatch({ type: 'LOAD_TODOS' });
+        gateway.fetchTodos();
     }, []);
 
     const addTodo = () => {
-        dispatch({ type: 'ADD_TODO', title: 'Teste' });
+        gateway.addTodo('teste haha');
+    }
+
+    const doneTodo = (id: string, done: boolean) => {
+        gateway.toggleTodo(id, done, [...state.todos]);
     }
 
     return (
@@ -25,7 +30,7 @@ function TodoListContainer() {
                 <input type="text" />
                 <button onClick={addTodo}>Add</button>
             </div>
-            <TodoList items={state.todos}/>
+            <TodoList items={state.todos} onToggle={doneTodo}/>
         </div>
     );
 }
