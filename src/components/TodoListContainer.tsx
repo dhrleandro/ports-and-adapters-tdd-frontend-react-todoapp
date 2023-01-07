@@ -2,26 +2,32 @@ import React from "react";
 import { Item } from "../entities/TodoList";
 import TodoList from "./TodoList";
 import styles from "../styles/TodoList.module.css";
+import { useDispatch, useTrackedState } from "../store/store";
 
 function TodoListContainer() {
 
-    const items = [
-        Item.create(undefined, 'Fazer café'),
-        Item.create(undefined, 'Estudar programação'),
-        Item.create(undefined, 'Almoçar'),
-        Item.create(undefined, 'Estudar um pouco mais de programação'),
-    ];
+    const dispatch = useDispatch();
+    const state = useTrackedState();
     
+    React.useEffect(() => {
+        console.log('init todos');
+        dispatch({ type: 'LOAD_TODOS' });
+    }, []);
+
+    const addTodo = () => {
+        dispatch({ type: 'ADD_TODO', title: 'Teste' });
+    }
+
     return (
         <div className={styles.TodoListContainer}>
             <h2>Todo App</h2>
             <div className={styles.InputContainer}>
                 <input type="text" />
-                <button>Add</button>
+                <button onClick={addTodo}>Add</button>
             </div>
-            <TodoList items={items}/>
+            <TodoList items={state.todos}/>
         </div>
     );
 }
 
-export default TodoListContainer;
+export default React.memo(TodoListContainer);
